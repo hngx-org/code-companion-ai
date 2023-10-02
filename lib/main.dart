@@ -40,7 +40,7 @@ class CodeCompanion extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
           textTheme: GoogleFonts.poppinsTextTheme()),
-      home: const LoginScreen(),
+      home: const OnboardingScreen(),
     );
   }
 }
