@@ -22,11 +22,13 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   get_it: ^7.6.4
+  google_fonts: ^6.1.0
+  gap:
 
   # NETWORK
   dio: ^5.3.3
 
-  
+
   # OTHERS
   logger: ^2.0.2+1
   hng_authentication: ^0.0.3
