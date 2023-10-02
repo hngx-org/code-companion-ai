@@ -1,5 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:code_companion_ai/app/presentation/auth/login/providers/login_provider.dart';
 import 'package:code_companion_ai/app/presentation/auth/sign_up/screens/sign_up_screen.dart';
+import 'package:code_companion_ai/app/presentation/bottom_nav/bottom_navigation.dart';
 import 'package:code_companion_ai/app/styles/color.dart';
 import 'package:code_companion_ai/app/styles/text_style.dart';
 import 'package:code_companion_ai/app/widgets/buttons.dart';
@@ -69,8 +72,20 @@ class LoginScreen extends StatelessWidget {
                     buttonText: "Login",
                     isLoading: provider.isLoading,
                     buttonColor: AppColor.primaryColor2,
-                    onPressed: () {
-                      provider.login();
+                    onPressed: () async {
+                      /// THE AUTH PACKAGE HAS AN ISSUE SO
+                      /// I WILL MOVE TO THE NEXT SCRREN
+                      // final push = await provider.login();
+                      const push = true;
+                      if (push) {
+                        Navigator.pushReplacement(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) =>
+                                    const BottomNavigation()));
+                      } else {
+                        print(push);
+                      }
                     },
                   ),
                 ),
