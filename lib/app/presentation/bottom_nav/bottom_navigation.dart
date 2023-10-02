@@ -1,3 +1,4 @@
+import 'package:code_companion_ai/app/presentation/chat/screen/chat_screen.dart';
 import 'package:code_companion_ai/app/presentation/saved/screens/saved_screen.dart';
 import 'package:code_companion_ai/app/styles/color.dart';
 import 'package:code_companion_ai/app/styles/text_style.dart';
@@ -15,7 +16,7 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   final List<Widget> _routes = [
-    const SavedScreen(),
+    const ChatScreen(),
     const SavedScreen(),
     const SavedScreen(),
   ];
