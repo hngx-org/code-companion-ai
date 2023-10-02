@@ -52,13 +52,13 @@ class _AppTextFieldState extends State<AppTextField> {
           filled: true,
           fillColor: AppColor.white,
           enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.grey, width: 1),
+            borderSide: BorderSide(color: AppColor.grey, width: 1.5),
           ),
           border: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.grey, width: 1),
+            borderSide: BorderSide(color: AppColor.grey, width: 1.5),
           ),
           focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.grey, width: 1),
+            borderSide: BorderSide(color: AppColor.grey, width: 1.5),
           ),
           disabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: AppColor.grey, width: 0.6),

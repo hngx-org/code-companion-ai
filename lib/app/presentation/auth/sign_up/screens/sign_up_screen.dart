@@ -1,5 +1,5 @@
-import 'package:code_companion_ai/app/presentation/auth/login/providers/login_provider.dart';
-import 'package:code_companion_ai/app/presentation/auth/sign_up/screens/sign_up_screen.dart';
+import 'package:code_companion_ai/app/presentation/auth/login/screens/login_screen.dart';
+import 'package:code_companion_ai/app/presentation/auth/sign_up/providers/sign_up_provider.dart';
 import 'package:code_companion_ai/app/styles/color.dart';
 import 'package:code_companion_ai/app/styles/text_style.dart';
 import 'package:code_companion_ai/app/widgets/buttons.dart';
@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Consumer<LoginProvider>(builder: (context, provider, _) {
+          child: Consumer<SignUpProvider>(builder: (context, provider, _) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -28,10 +28,20 @@ class LoginScreen extends StatelessWidget {
                   style: AppTextStyle.black30Bold,
                 ),
                 Text(
-                  "Sign in to continue",
+                  "Create an account to continue",
                   style: AppTextStyle.black14,
                 ),
                 const Gap(60),
+                Text(
+                  "Enter your name",
+                  style: AppTextStyle.black12Bold,
+                ),
+                const Gap(12),
+                AppTextField(
+                  controller: provider.nameController,
+                  hint: "e.g Sam Shot",
+                ),
+                const Gap(20),
                 Text(
                   "Enter your email address",
                   style: AppTextStyle.black12Bold,
@@ -52,44 +62,33 @@ class LoginScreen extends StatelessWidget {
                   hint: "",
                   isPassword: true,
                 ),
-                const Gap(12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      "Forgot password?",
-                      style: AppTextStyle.black12Bold
-                          .copyWith(color: AppColor.primaryColor2),
-                    ),
-                  ],
-                ),
                 const Gap(52),
                 Center(
                   child: AppButton(
-                    buttonText: "Login",
+                    buttonText: "Sign Up",
                     isLoading: provider.isLoading,
                     buttonColor: AppColor.primaryColor2,
                     onPressed: () {
-                      provider.login();
+                      provider.signup();
                     },
                   ),
                 ),
                 const Gap(8),
                 Text(
-                  "Don't have an account?",
+                  "Already have an account?",
                   style: AppTextStyle.black12Medium,
                 ),
                 const Gap(20),
                 Center(
                   child: AppButton(
-                    buttonText: "Sign up here",
+                    buttonText: "Login here",
                     buttonColor: AppColor.primaryColor2,
                     buttonType: ButtonType.outlined,
                     onPressed: () {
                       Navigator.pushReplacement(
                           context,
                           CupertinoPageRoute(
-                              builder: (context) => const SignUpScreen()));
+                              builder: (context) => const LoginScreen()));
                     },
                   ),
                 ),
