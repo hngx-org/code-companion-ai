@@ -1,15 +1,26 @@
 import 'package:code_companion_ai/app/di/locator.dart';
+import 'package:code_companion_ai/app/presentation/auth/login/providers/login_provider.dart';
+import 'package:code_companion_ai/app/presentation/auth/login/screens/login_screen.dart';
+import 'package:code_companion_ai/app/presentation/auth/sign_up/providers/sign_up_provider.dart';
 import 'package:code_companion_ai/app/presentation/onboarding/screens/onboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  setupLocator();
+// void main() async{
+//   await setupLocator();
+//   runApp(
+//    const CodeCompanion()
+//   );
+// }
+void main() async {
+  await setupLocator();
   runApp(
     MultiProvider(
-      providers: const [
+      providers: [
         ///// YOU ARE TO DUPLICATE THIS LINE FOR EVERY PROVIDER
-        // ChangeNotifierProvider(create: (_) => OnboardingViewModel()),
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+        ChangeNotifierProvider(create: (_) => SignUpProvider()),
       ],
       child: const CodeCompanion(),
     ),
@@ -24,11 +35,12 @@ class CodeCompanion extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Code Companion',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const OnboardingScreen(),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+          textTheme: GoogleFonts.poppinsTextTheme()),
+      home: const LoginScreen(),
     );
   }
 }
