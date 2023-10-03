@@ -21,12 +21,12 @@ class SignUpProvider extends ChangeNotifier {
       if (result != null) {
         // Registration failed, display an error message
         final data = json.decode(result.body);
-        print('sign up result: >>> $data');
+        debugPrint('sign up result: >>> $data');
       } else {
-        print('errror:   eeeeeee');
+        debugPrint('errror:   eeeeeee');
       }
     } on Exception catch (e) {
-      print(e);
+      debugPrint(e.toString());
       isLoading = false;
       notifyListeners();
     }
