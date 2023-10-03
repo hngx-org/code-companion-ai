@@ -19,11 +19,11 @@ class LoginProvider extends ChangeNotifier {
       if (result != null) {
         // Registration failed, display an error message
         final data = json.decode(result.body);
-        print('sign up result: >>> $data');
+        debugPrint('sign up result: >>> $data');
 
         return true;
       } else {
-        print('errror:   eeeeeee');
+        debugPrint('errror:   eeeeeee');
         isLoading = false;
         notifyListeners();
         return false;

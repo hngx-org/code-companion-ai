@@ -1,4 +1,5 @@
 import 'package:code_companion_ai/app/presentation/chat/screen/chat_screen.dart';
+import 'package:code_companion_ai/app/presentation/profile/profile.dart';
 import 'package:code_companion_ai/app/presentation/saved/screens/saved_screen.dart';
 import 'package:code_companion_ai/app/styles/color.dart';
 import 'package:code_companion_ai/app/styles/text_style.dart';
@@ -18,7 +19,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final List<Widget> _routes = [
     const ChatScreen(),
     const SavedScreen(),
-    const SavedScreen(),
+    const ProfileScreen(),
   ];
 
   int currentIndex = 0;
