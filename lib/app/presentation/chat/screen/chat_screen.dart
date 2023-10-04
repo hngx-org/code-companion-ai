@@ -1,4 +1,11 @@
+import 'package:code_companion_ai/app/presentation/chat/provider/chat_provider.dart';
+import 'package:code_companion_ai/app/presentation/chat/widgets/message_bubble.dart';
+import 'package:code_companion_ai/app/styles/color.dart';
+import 'package:code_companion_ai/app/styles/text_style.dart';
+import 'package:code_companion_ai/app/widgets/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -8,94 +15,107 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final List<MessageModel> messages = [];
-  TextEditingController messageController = TextEditingController();
-
-  ScrollController scrollController = ScrollController();
-
   @override
   void dispose() {
-    messageController.dispose();
+    // TODO: implement dispose
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final initprovider = Provider.of<ChatProvider>(context, listen: false);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+            initprovider.init();
+          });
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chat Buddy'),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              controller: scrollController,
-              itemCount: messages.length,
-              itemBuilder: (context, index) {
-                final message = messages[index];
-                return MessageBubble(
-                    message: message.text, isUser: message.isUser);
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: messageController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a message';
-                      }
-                      return null;
-                    },
-                    decoration: const InputDecoration.collapsed(
-                      hintText: 'Type your message...',
-                    ),
+      body: SafeArea(
+        child: Consumer<ChatProvider>(builder: (context, provider, _) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            provider.scrollToBottom();
+          });
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                    color: AppColor.primaryColor2,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(16),
+                        bottomRight: Radius.circular(16))),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      const Gap(16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Welcome!",
+                                style: AppTextStyle.black30Bold
+                                    .copyWith(color: AppColor.white),
+                              ),
+                              Text(
+                                "What would you like to work on?",
+                                style: AppTextStyle.black16Medium
+                                    .copyWith(color: AppColor.white),
+                              ),
+                            ],
+                          ),
+                          const CircleAvatar()
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.send))
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class MessageModel {
-  final int id;
-  final String text;
-  final bool isUser;
-
-  MessageModel({required this.id, required this.text, required this.isUser});
-}
-
-class MessageBubble extends StatelessWidget {
-  final String message;
-  final bool isUser;
-
-  const MessageBubble({super.key, required this.message, required this.isUser});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      child: Container(
-        padding: const EdgeInsets.all(12.0),
-        decoration: BoxDecoration(
-          color: isUser ? Colors.blue : Colors.grey,
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        child: Text(
-          message,
-          style: const TextStyle(color: Colors.white),
-        ),
+              ),
+              Expanded(
+                child: provider.chatModel.isEmpty
+                    ? Center(
+                        child: Text(
+                          "Hey there...\n You can ask me anything about coding!\n\n Just type your question below!!",
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle.black16Medium,
+                        ),
+                      )
+                    : SingleChildScrollView(
+                        controller: provider.scrollController,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: provider.chatModel
+                                .map((chat) => MessageBubble(
+                                      isUser: chat.isUser,
+                                      question: chat.question,
+                                      time: chat.time,
+                                      answer: chat.answer,
+                                    ))
+                                .toList()),
+                      ),
+              ),
+              const Gap(10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: AppTextField(
+                  controller: provider.messageController,
+                  suffix: InkWell(
+                    onTap: () {
+                      provider.sendMessage();
+                    },
+                    child: const Icon(
+                      Icons.send_rounded,
+                    ),
+                  ),
+                  hint: "Ask anything about coding....",
+                ),
+              )
+            ],
+          );
+        }),
       ),
     );
   }

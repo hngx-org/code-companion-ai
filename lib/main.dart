@@ -1,6 +1,7 @@
 import 'package:code_companion_ai/app/di/locator.dart';
 import 'package:code_companion_ai/app/presentation/auth/login/providers/login_provider.dart';
 import 'package:code_companion_ai/app/presentation/auth/sign_up/providers/sign_up_provider.dart';
+import 'package:code_companion_ai/app/presentation/chat/provider/chat_provider.dart';
 import 'package:code_companion_ai/app/presentation/onboarding/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,6 +21,7 @@ void main() async {
         ///// YOU ARE TO DUPLICATE THIS LINE FOR EVERY PROVIDER
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => SignUpProvider()),
+        ChangeNotifierProvider(create: (_) => ChatProvider()),
       ],
       child: const CodeCompanion(),
     ),

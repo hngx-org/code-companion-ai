@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:code_companion_ai/app/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:hng_authentication/authentication.dart';
 
@@ -8,6 +9,11 @@ class SignUpProvider extends ChangeNotifier {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+
+  String? passwordErrorText;
+  String? emailErrorText;
+
   void signup() async {
     isLoading = true;
     notifyListeners();
@@ -20,15 +26,26 @@ class SignUpProvider extends ChangeNotifier {
       final result = await authRepository.signUp(email, name, password);
       if (result != null) {
         // Registration failed, display an error message
-        final data = json.decode(result.body);
-        debugPrint('sign up result: >>> $data');
+        print('sign up result: >>> $result');
       } else {
-        debugPrint('errror:   eeeeeee');
+        print('errror:   eeeeeee');
+      isLoading = false;
+      notifyListeners();
       }
     } on Exception catch (e) {
       debugPrint(e.toString());
       isLoading = false;
       notifyListeners();
     }
+  }
+
+
+  validatePassword(String e) {
+    passwordErrorText = validatePasswordTextFields(e);
+    notifyListeners();
+  }
+  validateEmail(String e) {
+    emailErrorText = validateEmailTextFields(e);
+    notifyListeners();
   }
 }
