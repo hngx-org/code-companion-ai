@@ -22,9 +22,13 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   get_it: ^7.6.4
+
+
+  # UI
+  flutter_screenutil: ^5.9.0
   google_fonts: ^6.1.0
   gap:
-  in_app_payment: ^0.0.1
+  iconsax:
 
   # NETWORK
   dio: ^5.3.3
@@ -32,7 +36,8 @@ dependencies:
 
   # OTHERS
   logger: ^2.0.2+1
-  hng_authentication: ^0.0.3
+  hng_authentication: ^0.1.4
+  in_app_payment: ^0.0.1
 
 dev_dependencies:
   flutter_test:

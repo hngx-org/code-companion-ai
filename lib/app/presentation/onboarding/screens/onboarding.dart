@@ -1,5 +1,10 @@
 import 'package:code_companion_ai/app/presentation/auth/login/screens/login_screen.dart';
+import 'package:code_companion_ai/app/presentation/auth/sign_up/screens/sign_up_screen.dart';
+import 'package:code_companion_ai/app/styles/color.dart';
+import 'package:code_companion_ai/app/styles/text_style.dart';
+import 'package:code_companion_ai/app/widgets/buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -8,71 +13,67 @@ class OnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              'AI CodeCampers',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  color: Colors.black),
-            ),
-            Image.asset(
-              'assets/images/pic.png',
-              height: 400,
-            ),
-            const Text(
-              ' your one-stop solution for seamless code debugging and expert coding assistance through chat! ',
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            CustomContainer(
-              fillColor: Colors.purpleAccent,
-              width: 280,
-              height: 50,
-              useShadow: false,
-              borderColor: Colors.white,
-              borderRadius: 40,
-              child: Center(
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Get Started',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.black),
-                  ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              const Gap(20),
+              Text(
+                'Code Companion AI',
+                style: AppTextStyle.black25Bold,
+              ),
+              const Spacer(),
+              Image.asset(
+                'assets/images/pic.png',
+                height: 250,
+              ),
+              const Gap(20),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Your one-stop solution for seamless \n',
+                      style: AppTextStyle.black16Medium,
+                    ),
+                    TextSpan(
+                      text: ' code debugging ',
+                      style: AppTextStyle.black16Medium.copyWith(
+                          backgroundColor: Colors.red, color: AppColor.white),
+                    ),
+                    TextSpan(
+                      text: ' and expert coding assistance through chat! ',
+                      style: AppTextStyle.black16Medium,
+                    ),
+                  ],
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const Spacer(),
+              Center(
+                child: AppButton(
+                  buttonText: "Get Started",
+                  buttonColor: AppColor.primaryColor,
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => const SignUpScreen()));
+                  },
                 ),
               ),
-            ),
-            CustomContainer(
-              fillColor: Colors.purpleAccent,
-              width: 280,
-              height: 50,
-              useShadow: false,
-              borderColor: Colors.white,
-              borderRadius: 40,
-              child: Center(
-                child: TextButton(
+              const Gap(15),
+              Center(
+                child: AppButton(
+                  buttonText: "Login ",
+                  buttonColor: AppColor.primaryColor,
+                  buttonType: ButtonType.outlined,
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) => const LoginScreen()));
                   },
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.black),
-                  ),
                 ),
               ),
-            )
-          ],
+              const Gap(15),
+            ],
+          ),
         ),
       ),
     );
