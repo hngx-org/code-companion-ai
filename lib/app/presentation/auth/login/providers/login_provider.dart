@@ -18,14 +18,12 @@ class LoginProvider extends ChangeNotifier {
       final result = await authRepository.signIn(email, password);
       if (result != null) {
         // Registration failed, display an error message
-        // final data = json.decode(result.body);
-        print('lpgin  result: >>> $result');
-        isLoading = false;
-        notifyListeners();
+        final data = json.decode(result.body);
+        debugPrint('sign up result: >>> $data');
 
         return true;
       } else {
-        print('errror:   eeeeeee');
+        debugPrint('errror:   eeeeeee');
         isLoading = false;
         notifyListeners();
         return false;

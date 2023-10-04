@@ -20,17 +20,14 @@ class SignUpProvider extends ChangeNotifier {
       final result = await authRepository.signUp(email, name, password);
       if (result != null) {
         // Registration failed, display an error message
-        // final data = json.decode(result);
         print('sign up result: >>> $result');
-      isLoading = false;
-      notifyListeners();
       } else {
         print('errror:   eeeeeee');
       isLoading = false;
       notifyListeners();
       }
     } on Exception catch (e) {
-      print(e);
+      debugPrint(e.toString());
       isLoading = false;
       notifyListeners();
     }
