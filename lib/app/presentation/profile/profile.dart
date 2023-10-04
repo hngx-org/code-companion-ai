@@ -1,4 +1,5 @@
 import 'package:code_companion_ai/app/presentation/auth/login/screens/change_password.dart';
+import 'package:code_companion_ai/app/presentation/new%20payment/screen/payment_screen.dart';
 import 'package:code_companion_ai/app/styles/color.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -37,7 +38,8 @@ class ProfileScreen extends StatelessWidget {
           ),
           SafeArea(
             child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
                 child: Column(
                   children: [
                     const CircleAvatar(
@@ -75,7 +77,20 @@ class ProfileScreen extends StatelessWidget {
                                 builder: (context) => const ChangePassword()));
                       },
                     ),
-                    const Gap(10),
+                    const Gap(5),
+                    ListTile(
+                      leading: const Icon(
+                        Icons.payment,
+                      ),
+                      title: const Text('Payment'),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Pay()));
+                      },
+                    ),
+                    const Gap(5),
                     const ListTile(
                       leading: Icon(
                         Icons.info_outlined,
