@@ -37,6 +37,7 @@ dependencies:
   # OTHERS
   logger: ^2.0.2+1
   hng_authentication: ^0.1.4
+  in_app_payment: ^0.0.1
 
 dev_dependencies:
   flutter_test:

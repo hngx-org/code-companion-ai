@@ -3,6 +3,7 @@ import 'package:code_companion_ai/app/presentation/auth/login/providers/login_pr
 import 'package:code_companion_ai/app/presentation/auth/sign_up/providers/sign_up_provider.dart';
 import 'package:code_companion_ai/app/presentation/chat/provider/chat_provider.dart';
 import 'package:code_companion_ai/app/presentation/onboarding/screens/onboarding.dart';
+import 'package:code_companion_ai/app/presentation/payment/screen/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,7 @@ class CodeCompanion extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
           textTheme: GoogleFonts.poppinsTextTheme()),
-      home: const OnboardingScreen(),
+      home: const PaymentScreen(),
     );
   }
 }
