@@ -24,6 +24,7 @@ dependencies:
   get_it: ^7.6.4
   google_fonts: ^6.1.0
   gap:
+  in_app_payment: ^0.0.1
 
   # NETWORK
   dio: ^5.3.3
