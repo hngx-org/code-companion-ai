@@ -51,21 +51,27 @@ class _AppTextFieldState extends State<AppTextField> {
           contentPadding: const EdgeInsets.all(16),
           filled: true,
           fillColor: AppColor.white,
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.grey, width: 1.5),
-          ),
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.grey, width: 1.5),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.grey, width: 1.5),
-          ),
-          disabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.grey, width: 0.6),
-          ),
-          errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.red, width: 1),
-          ),
+          enabledBorder: OutlineInputBorder(
+              borderSide:
+                  const BorderSide(color: AppColor.primaryColor3, width: 1),
+              borderRadius: BorderRadius.circular(10)),
+          border: OutlineInputBorder(
+              borderSide:
+                  const BorderSide(color: AppColor.primaryColor3, width: 1),
+              borderRadius: BorderRadius.circular(10)),
+          focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: AppColor.primaryColor3,
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(10)),
+          disabledBorder: OutlineInputBorder(
+              borderSide:
+                  const BorderSide(color: AppColor.primaryColor3, width: 0.6),
+              borderRadius: BorderRadius.circular(10)),
+          errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.red, width: 1),
+              borderRadius: BorderRadius.circular(10)),
           errorText: widget.errorText,
           helperText: widget.helperText,
           errorStyle: AppTextStyle.black12Bold

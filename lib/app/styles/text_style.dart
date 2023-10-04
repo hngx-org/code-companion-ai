@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
 class AppTextStyle {
+  static TextStyle black8 = const TextStyle(
+    fontSize: 8,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+  );
   static TextStyle black14 = const TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
+  static TextStyle black14Bold = const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
     color: Colors.black,
   );
   static TextStyle black16Medium = const TextStyle(

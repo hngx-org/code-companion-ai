@@ -18,8 +18,10 @@ class LoginProvider extends ChangeNotifier {
       final result = await authRepository.signIn(email, password);
       if (result != null) {
         // Registration failed, display an error message
-        final data = json.decode(result.body);
-        print('sign up result: >>> $data');
+        // final data = json.decode(result.body);
+        print('lpgin  result: >>> $result');
+        isLoading = false;
+        notifyListeners();
 
         return true;
       } else {
@@ -28,7 +30,8 @@ class LoginProvider extends ChangeNotifier {
         notifyListeners();
         return false;
       }
-    } on Exception {
+    } on Exception catch (e) {
+      print(e);
       isLoading = false;
       notifyListeners();
       return false;
