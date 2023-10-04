@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:code_companion_ai/app/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:hng_authentication/authentication.dart';
 
@@ -8,6 +9,11 @@ class SignUpProvider extends ChangeNotifier {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+
+  String? passwordErrorText;
+  String? emailErrorText;
+
   void signup() async {
     isLoading = true;
     notifyListeners();
@@ -31,5 +37,15 @@ class SignUpProvider extends ChangeNotifier {
       isLoading = false;
       notifyListeners();
     }
+  }
+
+
+  validatePassword(String e) {
+    passwordErrorText = validatePasswordTextFields(e);
+    notifyListeners();
+  }
+  validateEmail(String e) {
+    emailErrorText = validateEmailTextFields(e);
+    notifyListeners();
   }
 }

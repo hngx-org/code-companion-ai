@@ -42,6 +42,10 @@ class LoginScreen extends StatelessWidget {
                 const Gap(12),
                 AppTextField(
                   controller: provider.emailController,
+                  onChanged: (p0) {
+                    provider.validateEmail(p0);
+                  },
+                  errorText: provider.emailErrorText,
                   hint: "e.g samshot@example.com",
                 ),
                 const Gap(20),
@@ -52,7 +56,11 @@ class LoginScreen extends StatelessWidget {
                 const Gap(12),
                 AppTextField(
                   controller: provider.passwordController,
+                  onChanged: (p0) {
+                    provider.validatePassword(p0);
+                  },
                   hint: "",
+                  errorText: provider.passwordErrorText,
                   isPassword: true,
                 ),
                 const Gap(12),
@@ -71,11 +79,12 @@ class LoginScreen extends StatelessWidget {
                   child: AppButton(
                     buttonText: "Login",
                     isLoading: provider.isLoading,
+                    isDisabled: provider.isDisabled,
                     buttonColor: AppColor.primaryColor2,
                     onPressed: () async {
                       /// THE AUTH PACKAGE HAS AN ISSUE SO
                       /// I WILL MOVE TO THE NEXT SCRREN
-                      // final push = await provider.login();
+                      // final push = await provider.login(); 
                       const push = true;
                       if (push) {
                         Navigator.pushReplacement(
@@ -83,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                             CupertinoPageRoute(
                                 builder: (context) =>
                                     const BottomNavigation()));
-                      } 
+                      }
                     },
                   ),
                 ),
