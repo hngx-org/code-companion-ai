@@ -24,7 +24,7 @@ Welcome to the Code Explanation app project! This mobile application simplifies 
   - The app is specialized in code-related discussions, ensuring a focused learning experience.
   - It only provides responses related to coding, programming languages, and technical topics.
 - Backend Integration:
-  - Utilizes a backend service for user sign-ups, authentication, and access validation.
+  - Utilizes a dart made package for user sign-ups, authentication, and access validation.
   - Ensures user security and access control.
 - Subscription Options:
   - Choose from two subscription plans:
