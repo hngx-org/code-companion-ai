@@ -1,5 +1,6 @@
 import 'package:code_companion_ai/app/presentation/chat/provider/chat_provider.dart';
 import 'package:code_companion_ai/app/presentation/chat/widgets/message_bubble.dart';
+import 'package:code_companion_ai/app/presentation/new%20payment/screen/subscription_options.dart';
 import 'package:code_companion_ai/app/styles/color.dart';
 import 'package:code_companion_ai/app/styles/text_style.dart';
 import 'package:code_companion_ai/app/widgets/text_field.dart';
@@ -15,19 +16,19 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     final initprovider = Provider.of<ChatProvider>(context, listen: false);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-            initprovider.init();
-          });
+      initprovider.init();
+    });
     return Scaffold(
       body: SafeArea(
         child: Consumer<ChatProvider>(builder: (context, provider, _) {
@@ -37,42 +38,77 @@ class _ChatScreenState extends State<ChatScreen> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Container(
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                    color: AppColor.primaryColor2,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(16),
-                        bottomRight: Radius.circular(16))),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      const Gap(16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Stack(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SubscriptionOptions()));
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height * 0.22,
+                      decoration: const BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(16),
+                              bottomRight: Radius.circular(16))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "3 credits left",
+                              style: AppTextStyle.black12Medium
+                                  .copyWith(color: AppColor.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.18,
+                    decoration: const BoxDecoration(
+                        color: AppColor.primaryColor2,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(16),
+                            bottomRight: Radius.circular(16))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Column(
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          const Gap(16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "Welcome!",
-                                style: AppTextStyle.black30Bold
-                                    .copyWith(color: AppColor.white),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Welcome!",
+                                    style: AppTextStyle.black30Bold
+                                        .copyWith(color: AppColor.white),
+                                  ),
+                                  Text(
+                                    "What would you like to work on?",
+                                    style: AppTextStyle.black16Medium
+                                        .copyWith(color: AppColor.white),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "What would you like to work on?",
-                                style: AppTextStyle.black16Medium
-                                    .copyWith(color: AppColor.white),
-                              ),
+                              const CircleAvatar()
                             ],
                           ),
-                          const CircleAvatar()
                         ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
               Expanded(
                 child: provider.chatModel.isEmpty
