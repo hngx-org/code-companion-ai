@@ -69,6 +69,7 @@ class ChatProvider extends ChangeNotifier {
 
   star(int index) {
     chatModel[index].isStar = !chatModel[index].isStar;
+    saveToDB();
     notifyListeners();
   }
 
