@@ -1,3 +1,4 @@
+import 'package:code_companion_ai/app/presentation/new%20payment/screen/payment_screen.dart';
 import 'package:code_companion_ai/app/styles/color.dart';
 import 'package:code_companion_ai/app/styles/text_style.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,12 @@ class SubscriptionOptions extends StatelessWidget {
                 )),
             options(
                 option: 'Plus',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Pay(amount: 3)));
+                },
                 price: '3',
                 icon: Icons.star_border,
                 info: const Column(
@@ -56,7 +62,12 @@ class SubscriptionOptions extends StatelessWidget {
                 )),
             options(
                 option: 'Premium',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Pay(amount: 5)));
+                },
                 price: '5',
                 icon: Icons.workspace_premium_outlined,
                 info: const Column(

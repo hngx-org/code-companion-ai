@@ -1,8 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:code_companion_ai/app/presentation/auth/login/screens/change_password.dart';
 import 'package:code_companion_ai/app/presentation/auth/login/screens/login_screen.dart';
-import 'package:code_companion_ai/app/presentation/new%20payment/screen/payment_screen.dart';
+import 'package:code_companion_ai/app/presentation/new%20payment/screen/subscription_options.dart';
 import 'package:code_companion_ai/app/presentation/profile/provider/logout_provider.dart';
 import 'package:code_companion_ai/app/styles/color.dart';
 import 'package:code_companion_ai/app/styles/text_style.dart';
@@ -79,36 +78,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const Gap(5),
                     Text(db.get('email').toString()),
                     const Gap(10),
-                    const ListTile(
-                      leading: Icon(
-                        Icons.language_outlined,
-                      ),
-                      title: Text('Change Language'),
-                    ),
-                    const Gap(10),
-                    ListTile(
-                      leading: const Icon(
-                        Icons.lock_reset_outlined,
-                      ),
-                      title: const Text('Change Password'),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ChangePassword()));
-                      },
-                    ),
+                    // const ListTile(
+                    //   leading: Icon(
+                    //     Icons.language_outlined,
+                    //   ),
+                    //   title: Text('Change Language'),
+                    // ),
+                    // const Gap(10),
+                    // ListTile(
+                    //   leading: const Icon(
+                    //     Icons.lock_reset_outlined,
+                    //   ),
+                    //   title: const Text('Change Password'),
+                    //   onTap: () {
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (context) => const ChangePassword()));
+                    //   },
+                    // ),
                     const Gap(5),
                     ListTile(
                       leading: const Icon(
                         Icons.payment,
                       ),
-                      title: const Text('Payment'),
+                      title: const Text('Subscriptions'),
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Pay()));
+                                builder: (context) =>
+                                    const SubscriptionOptions()));
                       },
                     ),
                     const Gap(5),
