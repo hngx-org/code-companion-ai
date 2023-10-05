@@ -18,6 +18,14 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+@override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+          context.read<ChatProvider>().scrollToBottom();
+        });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final initprovider = Provider.of<ChatProvider>(context, listen: false);
@@ -25,11 +33,10 @@ class _ChatScreenState extends State<ChatScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       initprovider.init();
     });
+
     return Scaffold(
       body: Consumer<ChatProvider>(builder: (context, provider, _) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          provider.scrollToBottom();
-        });
+       
         return Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
