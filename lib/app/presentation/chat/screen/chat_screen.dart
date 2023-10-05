@@ -18,11 +18,12 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-@override
+  @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-          context.read<ChatProvider>().scrollToBottom();
-        });
+      context.read<ChatProvider>().scrollToBottom();
+      context.read<ChatProvider>().getData();
+    });
     super.initState();
   }
 
@@ -36,7 +37,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
     return Scaffold(
       body: Consumer<ChatProvider>(builder: (context, provider, _) {
-       
         return Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -63,7 +63,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            "3 credits left",
+                            "${provider.credits} credits left",
                             style: AppTextStyle.black12Medium
                                 .copyWith(color: AppColor.white),
                           ),
@@ -103,7 +103,10 @@ class _ChatScreenState extends State<ChatScreen> {
                                 ),
                               ],
                             ),
-                            const CircleAvatar()
+                            CircleAvatar(
+                              child: Text(
+                                 provider.name.isEmpty ? '' : provider.name[0].toString().toUpperCase()),
+                            )
                           ],
                         ),
                       ],
@@ -150,7 +153,15 @@ class _ChatScreenState extends State<ChatScreen> {
                 isLoading: provider.isResponseLoading,
                 suffix: InkWell(
                   onTap: () {
-                    provider.sendMessage();
+                    if (provider.credits <= 0) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const SubscriptionOptions()));
+                    } else {
+                      provider.sendMessage();
+                    }
                   },
                   child: const Icon(
                     Iconsax.send_24,

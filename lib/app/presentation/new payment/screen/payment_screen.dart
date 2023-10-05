@@ -8,7 +8,8 @@ import '../../../di/locator.dart';
 enum Option { option1, option2 }
 
 class Pay extends StatefulWidget {
-  const Pay({super.key});
+  final int amount;
+  const Pay({super.key, required this.amount});
 
   @override
   State<Pay> createState() => _PayState();
@@ -157,10 +158,10 @@ class _PayState extends State<Pay> {
                           ),
                         ),
                       ),
-                      const Center(
+                      Center(
                         child: Text(
-                          '\$3.99',
-                          style: TextStyle(
+                          '\$${widget.amount}.00',
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 26,
                           ),
@@ -179,7 +180,10 @@ class _PayState extends State<Pay> {
                                       child: SizedBox(
                                         width: 300,
                                         height: 900,
-                                        child: pay.googlePay(amountToPay: '4'),
+                                        child: pay.googlePay(context,
+                                            userID: db.get('id'),
+                                            amountToPay:
+                                                widget.amount.toString()),
                                       ),
                                     ),
                                   )
@@ -189,7 +193,10 @@ class _PayState extends State<Pay> {
                                       child: SizedBox(
                                         width: 300,
                                         height: 800,
-                                        child: pay.applePay(amountToPay: '4'),
+                                        child: pay.applePay(context,
+                                            userID: db.get('id'),
+                                            amountToPay:
+                                                widget.amount.toString()),
                                       ),
                                     ),
                                   ),
