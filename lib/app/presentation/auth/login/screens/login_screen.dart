@@ -67,23 +67,12 @@ class LoginScreen extends StatelessWidget {
                     errorText: provider.passwordErrorText,
                     isPassword: true,
                   ),
-                  const Gap(12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Forgot password?",
-                        style: AppTextStyle.black12Bold
-                            .copyWith(color: AppColor.primaryColor2),
-                      ),
-                    ],
-                  ),
                   const Gap(52),
                   Center(
                     child: AppButton(
                       buttonText: "Login",
                       isLoading: provider.isLoading,
-                      isDisabled: provider.isDisabled,
+                      isDisabled: (provider.passwordErrorText == null && provider.emailErrorText == null) ? false : true,
                       buttonColor: AppColor.primaryColor2,
                       onPressed: () async {
                         /// THE AUTH PACKAGE HAS AN ISSUE SO
