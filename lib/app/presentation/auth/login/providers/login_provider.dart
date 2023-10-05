@@ -11,7 +11,7 @@ class LoginProvider extends ChangeNotifier {
 
 
   bool isLoading = false;
-  bool isDisabled = false;
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -53,29 +53,20 @@ class LoginProvider extends ChangeNotifier {
         return false;
       }
     } else {
-      isDisabled = true;
-      notifyListeners();
+     
       return false;
     }
   }
 
   validatePassword(String e) {
     passwordErrorText = validatePasswordTextFields(e);
-    if (passwordErrorText == null && emailErrorText == null) {
-      isDisabled = false;
-    } else {
-      isDisabled = true;
-    }
+    
     notifyListeners();
   }
 
   validateEmail(String e) {
     emailErrorText = validateEmailTextFields(e);
-    if (passwordErrorText == null && emailErrorText == null) {
-      isDisabled = false;
-    } else {
-      isDisabled = true;
-    }
+   
     notifyListeners();
   }
 }
