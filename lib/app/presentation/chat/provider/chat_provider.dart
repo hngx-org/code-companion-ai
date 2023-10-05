@@ -50,7 +50,8 @@ class ChatProvider extends ChangeNotifier {
 
   void getData() {
     name = _db.get('name');
-    credits = int.parse(_db.get('credits'));
+    credits = int.parse(_db.get('credits').toString());
+    notifyListeners();
   }
 
   void scrollToBottom() {

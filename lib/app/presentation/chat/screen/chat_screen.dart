@@ -23,6 +23,7 @@ class _ChatScreenState extends State<ChatScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ChatProvider>().scrollToBottom();
       context.read<ChatProvider>().getData();
+      setState(() {});
     });
     super.initState();
   }
@@ -104,8 +105,9 @@ class _ChatScreenState extends State<ChatScreen> {
                               ],
                             ),
                             CircleAvatar(
-                              child: Text(
-                                 provider.name.isEmpty ? '' : provider.name[0].toString().toUpperCase()),
+                              child: Text(provider.name.isEmpty
+                                  ? ''
+                                  : provider.name[0].toString().toUpperCase()),
                             )
                           ],
                         ),

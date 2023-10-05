@@ -72,7 +72,7 @@ class SignUpScreen extends StatelessWidget {
                       isLoading: provider.isLoading,
                       buttonColor: AppColor.primaryColor2,
                       onPressed: () {
-                        provider.signup();
+                        provider.signup(context);
                       },
                     ),
                   ),
