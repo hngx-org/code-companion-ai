@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:code_companion_ai/app/presentation/auth/login/screens/login_screen.dart';
 import 'package:code_companion_ai/app/presentation/auth/sign_up/providers/sign_up_provider.dart';
 import 'package:code_companion_ai/app/styles/color.dart';
@@ -68,8 +70,16 @@ class SignUpScreen extends StatelessWidget {
                     buttonText: "Sign Up",
                     isLoading: provider.isLoading,
                     buttonColor: AppColor.primaryColor2,
-                    onPressed: () {
-                      provider.signup();
+                    onPressed: () async {
+                      try {
+                        await provider.signup();
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            backgroundColor:
+                                const Color.fromARGB(224, 246, 11, 11),
+                            duration: const Duration(seconds: 2),
+                            content: Text(e.toString())));
+                      }
                     },
                   ),
                 ),

@@ -5,6 +5,7 @@ import 'package:code_companion_ai/app/styles/color.dart';
 import 'package:code_companion_ai/app/styles/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:iconsax/iconsax.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({
@@ -52,12 +53,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
           items: const [
             BottomNavigationBarItem(
               icon: NavBarItem(
-                iconPath: Icons.chat_bubble_rounded,
+                iconPath: Iconsax.message,
                 label: "Chat",
                 color: AppColor.grey,
               ),
               activeIcon: NavBarItem(
-                iconPath: Icons.chat_bubble_rounded,
+                iconPath: Iconsax.message,
                 label: "Chat",
                 isActive: true,
                 color: AppColor.primaryColor2,
@@ -66,12 +67,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
             ),
             BottomNavigationBarItem(
               icon: NavBarItem(
-                iconPath: Icons.star_border_rounded,
+                iconPath: Iconsax.star,
                 label: "Saved",
                 color: AppColor.grey,
               ),
               activeIcon: NavBarItem(
-                iconPath: Icons.star_border_rounded,
+                iconPath: Iconsax.star,
                 label: "Saved",
                 isActive: true,
                 color: AppColor.primaryColor2,
@@ -80,12 +81,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
             ),
             BottomNavigationBarItem(
               icon: NavBarItem(
-                iconPath: Icons.person_rounded,
+                iconPath: Iconsax.profile_circle,
                 label: "Profile",
                 color: AppColor.grey,
               ),
               activeIcon: NavBarItem(
-                iconPath: Icons.person_rounded,
+                iconPath: Iconsax.profile_circle,
                 label: "Profile",
                 isActive: true,
                 color: AppColor.primaryColor2,

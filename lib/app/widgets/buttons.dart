@@ -42,7 +42,7 @@ class AppButton extends StatelessWidget {
         height: 48,
         elevation: 0,
         disabledColor: buttonColor?.withOpacity(0.3) ?? AppColor.grey,
-        minWidth: width ?? (buttonLength == ButtonLength.long ? 335 : 220),
+        minWidth: width ?? (buttonLength == ButtonLength.long ? double.infinity : 220),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
             side: buttonType == ButtonType.outlined

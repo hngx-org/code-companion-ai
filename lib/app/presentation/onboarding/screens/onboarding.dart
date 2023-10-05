@@ -12,67 +12,69 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              const Gap(20),
-              Text(
-                'Code Companion AI',
-                style: AppTextStyle.black25Bold,
-              ),
-              const Spacer(),
-              Image.asset(
-                'assets/images/pic.png',
-                height: 250,
-              ),
-              const Gap(20),
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'Your one-stop solution for seamless \n',
-                      style: AppTextStyle.black16Medium,
-                    ),
-                    TextSpan(
-                      text: ' code debugging ',
-                      style: AppTextStyle.black16Medium.copyWith(
-                          backgroundColor: Colors.red, color: AppColor.white),
-                    ),
-                    TextSpan(
-                      text: ' and expert coding assistance through chat! ',
-                      style: AppTextStyle.black16Medium,
-                    ),
-                  ],
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                const Gap(20),
+                Text(
+                  'Code Companion AI',
+                  style: AppTextStyle.black25Bold,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const Spacer(),
-              Center(
-                child: AppButton(
-                  buttonText: "Get Started",
-                  buttonColor: AppColor.primaryColor,
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => const SignUpScreen()));
-                  },
+                const Spacer(),
+                Image.asset(
+                  'assets/images/pic.png',
+                  height: 250,
                 ),
-              ),
-              const Gap(15),
-              Center(
-                child: AppButton(
-                  buttonText: "Login ",
-                  buttonColor: AppColor.primaryColor,
-                  buttonType: ButtonType.outlined,
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => const LoginScreen()));
-                  },
+                const Gap(20),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Your one-stop solution for seamless \n',
+                        style: AppTextStyle.black16Medium,
+                      ),
+                      TextSpan(
+                        text: ' code debugging ',
+                        style: AppTextStyle.black16Medium.copyWith(
+                            backgroundColor: Colors.red, color: AppColor.white),
+                      ),
+                      TextSpan(
+                        text: ' and expert coding assistance through chat! ',
+                        style: AppTextStyle.black16Medium,
+                      ),
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-              ),
-              const Gap(15),
-            ],
+                const Spacer(),
+                Center(
+                  child: AppButton(
+                    buttonText: "Get Started",
+                    buttonColor: AppColor.primaryColor,
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const SignUpScreen()));
+                    },
+                  ),
+                ),
+                const Gap(15),
+                Center(
+                  child: AppButton(
+                    buttonText: "Login ",
+                    buttonColor: AppColor.primaryColor,
+                    buttonType: ButtonType.outlined,
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const LoginScreen()));
+                    },
+                  ),
+                ),
+                const Gap(15),
+              ],
+            ),
           ),
         ),
       ),

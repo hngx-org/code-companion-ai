@@ -84,14 +84,21 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () async {
                       /// THE AUTH PACKAGE HAS AN ISSUE SO
                       /// I WILL MOVE TO THE NEXT SCRREN
-                      // final push = await provider.login(); 
-                      const push = true;
+                      final push = await provider.login();
+                      // const push = true;
                       if (push) {
                         Navigator.pushReplacement(
                             context,
                             CupertinoPageRoute(
                                 builder: (context) =>
                                     const BottomNavigation()));
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                backgroundColor:
+                                    Color.fromARGB(224, 246, 11, 11),
+                                duration: Duration(seconds: 2),
+                                content: Text('error Logging in')));
                       }
                     },
                   ),
