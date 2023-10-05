@@ -84,8 +84,8 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () async {
                       /// THE AUTH PACKAGE HAS AN ISSUE SO
                       /// I WILL MOVE TO THE NEXT SCRREN
-                      // final push = await provider.login(); 
-                      const push = true;
+                      final push = await provider.login(); 
+                      // const push = true;
                       if (push) {
                         Navigator.pushReplacement(
                             context,

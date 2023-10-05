@@ -1,24 +1,32 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:code_companion_ai/app/styles/color.dart';
 import 'package:code_companion_ai/app/styles/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
 
 class MessageBubble extends StatelessWidget {
   final bool isUser;
   final String question;
   final String? answer;
   final DateTime time;
+  final bool isStar;
+  final Function() onStarred;
 
   const MessageBubble({
     super.key,
     required this.isUser,
     required this.question,
+    required this.onStarred,
+    required this.isStar,
     this.answer,
     required this.time,
   });
 
   @override
   Widget build(BuildContext context) {
+    final t = DateFormat('h:mm a dd/MM/yy').format(time);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       child: Container(
@@ -38,7 +46,7 @@ class MessageBubble extends StatelessWidget {
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(time.toIso8601String(), style: AppTextStyle.black8),
+                  Text(t, style: AppTextStyle.black8),
                   Text(
                     question,
                     style: AppTextStyle.black14Thick,
@@ -50,18 +58,27 @@ class MessageBubble extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const CircleAvatar(),
+                      const CircleAvatar(
+                        backgroundImage: AssetImage(
+                          "assets/images/bot.png",
+                        ),
+                        backgroundColor: AppColor.primaryColor2,
+                      ),
                       const Gap(10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(time.toIso8601String(),
-                              style: AppTextStyle.black8),
-                          Text(
-                            question,
-                            style: AppTextStyle.black14Thick,
-                          ),
-                        ],
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(t, style: AppTextStyle.black8),
+                            Text(
+                              question,
+                              softWrap: true,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyle.black14Thick,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -88,12 +105,30 @@ class MessageBubble extends StatelessWidget {
                               ),
                             ),
                             const Gap(10),
-                            const Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Icon(
-                                  Icons.copy,
-                                  color: AppColor.grey,
+                                InkWell(
+                                  onTap: () {
+                                    // ClickToCopy.copy(answer.toString());
+                                    onStarred();
+                                  },
+                                  child: Icon(
+                                    isStar ? Iconsax.star1 : Iconsax.star,
+                                    color: AppColor.primaryColor2,
+                                    semanticLabel: "Add to favorites",
+                                  ),
+                                ),
+                                const Gap(25),
+                                InkWell(
+                                  onTap: () {
+                                    FlutterClipboard.copy(answer.toString());
+                                  },
+                                  child: const Icon(
+                                    Iconsax.copy,
+                                    color: AppColor.primaryColor2,
+                                    semanticLabel: "Copy to Clipboard",
+                                  ),
                                 ),
                               ],
                             )

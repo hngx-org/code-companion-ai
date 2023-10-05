@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppTextStyle {
   static TextStyle black8 = const TextStyle(
     fontSize: 8,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w600,
     color: Colors.black,
   );
   static TextStyle black14 = const TextStyle(
