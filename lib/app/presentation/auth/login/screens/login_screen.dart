@@ -18,12 +18,15 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Consumer<LoginProvider>(builder: (context, provider, _) {
-            return SingleChildScrollView(
-              child: Column(
+      body: WillPopScope(
+        onWillPop: () async {
+          return false;
+        },
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Consumer<LoginProvider>(builder: (context, provider, _) {
+              return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Gap(26),
@@ -82,6 +85,13 @@ class LoginScreen extends StatelessWidget {
                               CupertinoPageRoute(
                                   builder: (context) =>
                                       const BottomNavigation()));
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  backgroundColor:
+                                      Color.fromARGB(224, 246, 11, 11),
+                                  duration: Duration(seconds: 2),
+                                  content: Text('error Logging in')));
                         }
                       },
                     ),
@@ -106,9 +116,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-            );
-          }),
+              );
+            }),
+          ),
         ),
       ),
     );

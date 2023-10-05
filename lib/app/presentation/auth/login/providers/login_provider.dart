@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:code_companion_ai/app/di/locator.dart';
 import 'package:code_companion_ai/app/widgets/text_field.dart';
 import 'package:code_companion_ai/data/services/db_service.dart';
@@ -47,7 +45,7 @@ class LoginProvider extends ChangeNotifier {
           return false;
         }
       } on Exception catch (e) {
-        print(e);
+        debugPrint(e.toString());
         isLoading = false;
         notifyListeners();
         return false;
