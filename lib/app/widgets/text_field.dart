@@ -13,6 +13,7 @@ class AppTextField extends StatefulWidget {
   final TextEditingController controller;
   final bool isPassword;
   final Widget? suffix;
+  final bool? isLoading;
   final Function(String)? onChanged;
   bool isDisabled = false;
   AppTextField({
@@ -20,6 +21,7 @@ class AppTextField extends StatefulWidget {
     this.hint,
     this.helperText,
     this.errorText,
+    this.isLoading = false,
     this.isPassword = false,
     this.isDisabled = false,
     this.suffix,
@@ -93,10 +95,18 @@ class _AppTextFieldState extends State<AppTextField> {
               : Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    widget.suffix ??
-                        Container(
-                          width: 1,
-                        ),
+                    widget.isLoading!
+                        ? const SizedBox(
+                            width: 15,
+                            height: 15,
+                            child: CircularProgressIndicator(
+                              color: AppColor.primaryColor2,
+                            ),
+                          )
+                        : widget.suffix ??
+                            Container(
+                              width: 1,
+                            ),
                   ],
                 )),
     );
@@ -117,14 +127,6 @@ String? validateEmailTextFields(String value) {
 String? validatePasswordTextFields(String value) {
   if (value.isEmpty) return "Password must not be empty";
   if (value.length < 6) return "Password must be at least 6 characters long";
-  return null;
-}
-
-String? validatePhoneNumberTextFields(String value) {
-  if (value.isEmpty) return "Phone number must not be empty";
-  if (value.length < 11 || value.length > 11) {
-    return "Phone number must be 11 characters long";
-  }
   return null;
 }
 
