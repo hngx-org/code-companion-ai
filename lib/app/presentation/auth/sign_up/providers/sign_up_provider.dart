@@ -30,9 +30,9 @@ class SignUpProvider extends ChangeNotifier {
         ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                   backgroundColor:
-                                      Color.fromARGB(224, 246, 11, 11),
+                                      Colors.green,
                                   duration: Duration(seconds: 2),
-                                  content: Text('error Logging in')));
+                                  content: Text('Account created please login')));
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const LoginScreen()));
         debugPrint('sign up result: >>> $result');
       } else {
