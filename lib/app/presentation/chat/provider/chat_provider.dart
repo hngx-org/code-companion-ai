@@ -14,6 +14,8 @@ class ChatProvider extends ChangeNotifier {
   List<ChatModel> chatModel = [];
   String cookie = "";
   bool isResponseLoading = false;
+  String name = '';
+  int credits = 0;
 
   TextEditingController messageController = TextEditingController();
   final ScrollController scrollController = ScrollController();
@@ -36,13 +38,20 @@ class ChatProvider extends ChangeNotifier {
         time: DateTime.now(),
         answer: answer);
     chatModel.add(bot);
-
+    credits -= 1;
+    _db.save('credits', credits.toString());
     isResponseLoading = false;
     notifyListeners();
 
     await Future.delayed(const Duration(seconds: 1));
     scrollToBottom();
     saveToDB();
+  }
+
+  void getData() {
+    name = _db.get('name');
+    credits = int.parse(_db.get('credits').toString());
+    notifyListeners();
   }
 
   void scrollToBottom() {

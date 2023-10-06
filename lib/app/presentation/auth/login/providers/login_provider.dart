@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:code_companion_ai/app/di/locator.dart';
 import 'package:code_companion_ai/app/widgets/text_field.dart';
 import 'package:code_companion_ai/data/services/db_service.dart';
@@ -8,7 +6,6 @@ import 'package:hng_authentication/authentication.dart';
 
 class LoginProvider extends ChangeNotifier {
   final _db = locator<HiveDB>();
-
 
   bool isLoading = false;
 
@@ -32,11 +29,11 @@ class LoginProvider extends ChangeNotifier {
         final authRepository = Authentication();
         final result = await authRepository.signIn(email, password);
         if (result != null) {
-          _db.save("email", result.email);
-          _db.save("id", result.id);
-          _db.save("name", result.name);
-          _db.save("credits", result.credits);
-          _db.save("cookie", result.cookie);
+          await _db.save("email", result.email);
+          await _db.save("id", result.id);
+          await _db.save("name", result.name);
+          await _db.save("credits", result.credits);
+          await _db.save("cookie", result.cookie);
           isLoading = false;
           notifyListeners();
           return true;
@@ -47,26 +44,25 @@ class LoginProvider extends ChangeNotifier {
           return false;
         }
       } on Exception catch (e) {
-        print(e);
+        debugPrint(e.toString());
         isLoading = false;
         notifyListeners();
         return false;
       }
     } else {
-     
       return false;
     }
   }
 
   validatePassword(String e) {
     passwordErrorText = validatePasswordTextFields(e);
-    
+
     notifyListeners();
   }
 
   validateEmail(String e) {
     emailErrorText = validateEmailTextFields(e);
-   
+
     notifyListeners();
   }
 }

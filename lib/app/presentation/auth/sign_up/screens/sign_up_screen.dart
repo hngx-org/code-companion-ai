@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:code_companion_ai/app/presentation/auth/login/screens/login_screen.dart';
 import 'package:code_companion_ai/app/presentation/auth/sign_up/providers/sign_up_provider.dart';
 import 'package:code_companion_ai/app/styles/color.dart';
@@ -70,7 +72,7 @@ class SignUpScreen extends StatelessWidget {
                       isLoading: provider.isLoading,
                       buttonColor: AppColor.primaryColor2,
                       onPressed: () {
-                        provider.signup();
+                        provider.signup(context);
                       },
                     ),
                   ),
