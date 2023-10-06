@@ -81,4 +81,4 @@ Select the plan that suits your needs for an enhanced code learning experience.
 
 You can test the Code Explanation app locally or on an emulator. Simply follow the installation instructions above.
 
-.Visit the following link to access the app on Appetize.io: [Code Companion AI on Appetize.io](https://appetize.io/app/6wautaopwv6y6cewthv6zeic6m?device=pixel6&osVersion=12.0&scale=75)
+.Visit the following link to access the app on Appetize.io: [Code Companion AI on Appetize.io](https://appetize.io/app/3rr4wgg3pw4qxaxmikov2kkxym?device=pixel4&osVersion=11.0&scale=75)
